@@ -3,9 +3,10 @@ import numpy as np
 from tensorflow.keras.models import load_model
 from PIL import Image
 import io
+from flask_cors import CORS
 
 app = Flask(__name__)
-
+CORS(app)
 # Load your pre-trained h5 model
 model = load_model('my_model.h5')
 
