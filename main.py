@@ -22,7 +22,7 @@ def predict():
     try:
         # Open the image and resize to 75x100
         image = Image.open(io.BytesIO(file.read()))
-        image = image.resize((75, 100))
+        image = image.resize((100, 75))
 
         # Preprocess the image to match the model input requirements
         image_array = np.asarray(image) / 255.0  # Normalize the image
