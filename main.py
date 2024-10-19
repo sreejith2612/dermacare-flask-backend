@@ -10,8 +10,16 @@ CORS(app)
 # Load your pre-trained h5 model
 model = load_model('my_model.h5')
 
-# Define class labels (replace with actual class labels)
-class_labels = ['Class 1', 'Class 2', 'Class 3', 'Class 4', 'Class 5', 'Class 6', 'Class 7']
+# Updated class labels to match frontend
+class_labels = [
+    'Melanocytic nevi',
+    'Melanoma',
+    'Benign keratosis-like lesions',
+    'Basal cell carcinoma',
+    'Actinic keratoses',
+    'Vascular lesions',
+    'Dermatofibroma'
+]
 
 @app.route('/predict', methods=['POST'])
 def predict():
