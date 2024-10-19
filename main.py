@@ -6,7 +6,8 @@ import io
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/predict": {"origins": "https://dermacare26.vercel.app"}})
+
 # Load your pre-trained h5 model
 model = load_model('my_model.h5')
 
