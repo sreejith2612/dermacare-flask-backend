@@ -6,7 +6,14 @@ import io
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/predict": {"origins": "https://dermacare26.vercel.app"}})
+CORS(app, resources={
+    r"/predict": {
+        "origins": [
+            "https://dermacare26.vercel.app",
+            r"http://localhost:\d+"  # Allow any localhost port
+        ]
+    }
+})
 
 # Load your pre-trained h5 model
 model = load_model('my_model.h5')
@@ -30,8 +37,14 @@ def predict():
     file = request.files['image']
 
     try:
-        # Open the image and resize to 75x100
+        # Open the image
         image = Image.open(io.BytesIO(file.read()))
+
+        # Convert PNG to JPG if necessary
+        if image.format == 'PNG':
+            image = image.convert('RGB')
+
+        # Resize to 100x75
         image = image.resize((100, 75))
 
         # Preprocess the image to match the model input requirements
